@@ -75,7 +75,7 @@ function handleRegister() {
   })
     .then((res) => res.json())
     .then(() => {
-      router.push("/login");
+      router.push("/auth/login");
     })
     .catch((err) => {
       isError.value = err.message;
