@@ -1,5 +1,7 @@
 <template>
-  <div class="card bg-base-100 w-52 shadow-sm hover:scale-105">
+  <div
+    class="card bg-base-100 w-52 shadow-sm hover:scale-105 transition duration-300"
+  >
     <figure class="p-4">
       <img
         :src="product.image"
