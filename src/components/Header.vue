@@ -11,6 +11,13 @@
         active-class="border-b-2 border-purple-500 text-purple-500"
         >{{ route.label }}</router-link
       >
+
+      <router-link
+        to="/admin"
+        active-class="border-b-2 border-purple-500 text-purple-500"
+        v-if="isLoggedIn"
+        >Admin</router-link
+      >
     </div>
     <div class="flex-none">
       <div class="dropdown dropdown-end">
@@ -58,18 +65,21 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+
 const routes = [
   { path: "/", label: "Home" },
   { path: "/contact", label: "Contact" },
   { path: "/login", label: "Login" },
   { path: "/register", label: "Register" },
-  { path: "/admin", label: "Admin" },
 ];
 
 import { ShoppingCart } from "lucide-vue-next";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+
+const isLoggedIn = ref(localStorage.getItem("token"));
 
 function logout() {
   localStorage.removeItem("token");
