@@ -1,10 +1,11 @@
 <template>
-  <div class="card bg-base-100 w-48 shadow-sm">
+  <div class="card bg-base-100 w-52 shadow-sm hover:scale-105">
     <figure class="p-4">
       <img
         :src="product.image"
         :alt="product.title"
         class="w-48 h-48 object-cover"
+        @click="$router.push(`/products/${product.id}`)"
       />
     </figure>
     <div class="card-body">

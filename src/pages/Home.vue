@@ -2,7 +2,7 @@
   <div class="flex flex-wrap gap-4 justify-center">
     <div
       class="flex w-52 flex-col gap-4"
-      v-for="(value, index) in new Array(8)"
+      v-for="(value, index) in new Array(18)"
       :key="index"
       v-if="isLoading"
     >
