@@ -5,62 +5,73 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: () => import("../pages/Home.vue"),
-    },
-
-    {
-      path: "/products",
-      redirect: "/",
-    },
-    {
-      path: "/contact",
-      name: "contact",
-      component: () => import("../pages/Contact.vue"),
+      component: () => import("../layouts/MainLayout.vue"),
       children: [
         {
-          path: "social-media",
-          component: () => import("../pages/contact/SocialMedia.vue"),
+          path: "",
+          name: "home",
+          component: () => import("../pages/Home.vue"),
         },
         {
-          path: "address",
-          component: () => import("../pages/contact/Address.vue"),
+          path: "products",
+          redirect: "/",
+        },
+        {
+          path: "contact",
+          name: "contact",
+          component: () => import("../pages/Contact.vue"),
+          children: [
+            {
+              path: "social-media",
+              component: () => import("../pages/contact/SocialMedia.vue"),
+            },
+            {
+              path: "address",
+              component: () => import("../pages/contact/Address.vue"),
+            },
+          ],
+        },
+        {
+          path: "profile",
+          name: "profile",
+          component: () => import("../pages/Profile.vue"),
+        },
+        {
+          path: "products/:id", // /products/2
+          name: "productDetail",
+          component: () => import("../pages/ProductDetail.vue"),
+          props: true,
+        },
+        {
+          path: "admin",
+          name: "admin",
+          component: () => import("../pages/Admin.vue"),
+          // beforeEnter: () => {
+          //   console.log("Sebelum masuk ke routing admin");
+          //   const token = localStorage.getItem("token");
+
+          //   if (!token) {
+          //     return "/login";
+          //   }
+          // },
         },
       ],
     },
     {
-      path: "/profile",
-      name: "profile",
-      component: () => import("../pages/Profile.vue"),
-    },
-    {
-      path: "/login",
-      name: "login",
-      component: () => import("../pages/Login.vue"),
-    },
-    {
-      path: "/register",
-      name: "register",
-      component: () => import("../pages/Register.vue"),
-    },
-    {
-      path: "/products/:id", // /products/2
-      name: "productDetail",
-      component: () => import("../pages/ProductDetail.vue"),
-      props: true,
-    },
-    {
-      path: "/admin",
-      name: "admin",
-      component: () => import("../pages/Admin.vue"),
-      // beforeEnter: () => {
-      //   console.log("Sebelum masuk ke routing admin");
-      //   const token = localStorage.getItem("token");
-
-      //   if (!token) {
-      //     return "/login";
-      //   }
-      // },
+      path: "/auth",
+      component: () => import("../layouts/AuthLayout.vue"),
+      children: [
+        {
+          path: "login",
+          name: "login",
+          component: () => import("../pages/Login.vue"),
+        },
+        {
+          path: "register",
+          name: "register",
+          component: () => import("../pages/Register.vue"),
+        },
+      ],
     },
   ],
 });

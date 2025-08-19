@@ -20,7 +20,7 @@
       >
     </div>
     <div class="flex-none">
-      <div class="dropdown dropdown-end">
+      <!-- <div class="dropdown dropdown-end">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
           <div class="indicator">
             <ShoppingCart />
@@ -39,8 +39,11 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="dropdown dropdown-end">
+      </div> -->
+
+      <router-link v-if="!isLoggedIn" to="/auth/login">Login</router-link>
+
+      <div v-else class="dropdown dropdown-end">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
             <img
@@ -70,8 +73,6 @@ import { ref } from "vue";
 const routes = [
   { path: "/", label: "Home" },
   { path: "/contact", label: "Contact" },
-  { path: "/login", label: "Login" },
-  { path: "/register", label: "Register" },
 ];
 
 import { ShoppingCart } from "lucide-vue-next";
@@ -84,5 +85,6 @@ const isLoggedIn = ref(localStorage.getItem("token"));
 function logout() {
   localStorage.removeItem("token");
   router.push("/");
+  isLoggedIn.value = false;
 }
 </script>

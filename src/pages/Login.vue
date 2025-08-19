@@ -2,6 +2,8 @@
   <h1 class="text-xl mb-10">Login</h1>
 
   <form class="flex flex-col gap-4" @submit.prevent="handleLogin">
+    <FetchError v-if="isError" message="Invalid username or password!" />
+
     <div class="flex flex-col gap-2">
       <label for="username" class="label">Username</label>
       <input
@@ -26,14 +28,19 @@
       />
     </div>
 
-    <div>
-      <button type="submit" class="btn btn-primary">Login</button>
+    <div class="flex flex-col gap-6">
+      <button type="submit" class="btn btn-primary w-full">Login</button>
+      <p class="text-sm text-center">
+        Don't have account?
+        <router-link to="/auth/register">Register</router-link>
+      </p>
     </div>
   </form>
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import FetchError from "@/components/FetchError.vue";
+import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -45,6 +52,8 @@ const form = reactive({
   username: "",
   password: "",
 });
+
+const isError = ref(false);
 
 function handleLogin() {
   fetch("https://fakestoreapi.com/auth/login", {
@@ -61,6 +70,7 @@ function handleLogin() {
     })
     .catch((err) => {
       console.error(err.message);
+      isError.value = true;
     });
 }
 </script>
