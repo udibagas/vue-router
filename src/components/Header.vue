@@ -8,7 +8,7 @@
         v-for="(route, index) in routes"
         :key="index"
         :to="route.path"
-        active-class="border-b-2 border-purple-500 text-purple-500"
+        exact-active-class="border-b-2 border-purple-500 text-purple-500"
         >{{ route.label }}</router-link
       >
 
@@ -44,6 +44,7 @@
       <router-link v-if="!isLoggedIn" to="/auth/login">Login</router-link>
 
       <div v-else class="dropdown dropdown-end">
+        Welcome!
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
             <img
