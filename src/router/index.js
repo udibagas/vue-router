@@ -14,7 +14,8 @@ const router = createRouter({
         },
         {
           path: "products",
-          redirect: "/",
+          name: "products",
+          component: () => import("../pages/Products.vue"),
         },
         {
           path: "contact",

@@ -73,6 +73,7 @@ import { ref } from "vue";
 
 const routes = [
   { path: "/", label: "Home" },
+  { path: "/products", label: "Products" },
   { path: "/contact", label: "Contact" },
 ];
 
